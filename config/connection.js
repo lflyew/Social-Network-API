@@ -1,8 +1,8 @@
 const { connect, connection } = require('mongoose');
 
-const connection = process.env.MONGODB_URI || 'mongodb://localhost:27017/socialDB';
+const connectionString = process.env.MONGODB_URI || 'mongodb://localhost:27017/socialDB';
 
-connect(connection, {
+connect(connectionString, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 });
