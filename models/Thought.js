@@ -3,7 +3,6 @@ const { Schema, model, Types } = require('mongoose');
 //moment imported
 
 const moment = require('moment');
-const { kStringMaxLength } = require('buffer');
 
 //Schema- Reaction
 
@@ -25,7 +24,7 @@ const SchemaReaction = new Schema (
         createdAt: {
             type: Date,
             default: Date.now,
-            get: createdAtVal => moment(createdAtVal).format("MM DD, YYYY [at] hh:mm a"),
+            get: createdAtVal => moment(createdAtVal).format("MMM DD, YYYY [at] hh:mm a"),
         },
     },
     {

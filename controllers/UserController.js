@@ -1,5 +1,4 @@
 const { User, Thought } = require("../models");
-const { populate } = require("../models/User");
 
 module.exports = {
 
@@ -33,7 +32,7 @@ module.exports = {
         .catch((err) => {
             console.log(err);
             return res.status(500).json(err);
-        })
+        });
     },
 
     //update user
@@ -43,6 +42,11 @@ module.exports = {
             { _id: req.params.userId },
             { $set: req.body },
             { runValidators: true, new: true }
+        )
+        .then((user) =>
+        !user
+        ? res.status(404).json({ message: "No User found with that ID!" })
+        : res.json(user)
         )
         .catch((err) => res.status(500).json(err));
     },
