@@ -13,10 +13,10 @@ module.exports = {
 
     getSingleUser(req, res) {
         User.findOne({ _id: req.params.userId })
-        populate("thoughts")
+        .populate("thoughts")
         .populate("friends")
         .select("-__v")
-        then((user) =>
+        .then((user) =>
         !user
         ? res.status(404).json({ message: "No User found with that ID!"})
         : res.json(user)
@@ -89,7 +89,7 @@ module.exports = {
         .then(
             (user) =>
             !user
-            ? res.status(404).json({ message: "Np User found with this ID!" })
+            ? res.status(404).json({ message: "No User found with this ID!" })
             : res.json(user)
         )
         .catch((err) => res.status(500).json(err));
